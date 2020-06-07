@@ -32,16 +32,28 @@ namespace Orponing
         #endregion PrivateMethod
 
         #region PublicMethod
-        #endregion PublicMethod
-
+        /// <summary>
+        /// Метод получения адреса по текстовому представлению 
+        /// </summary>
+        /// <param name="address">Текстовое представление адреса</param>
+        /// <returns>Адрес</returns>
+        /// <exception cref="ArgumentException">Если строковое представление адреса пустое</exception>
         public Address GetOrponByAddress(string address)
         {
-            var requestBody = _serializer.SerializeSinglAddress(address);
-            var str = _repository.Request(requestBody);
+            if (string.IsNullOrEmpty(address)) throw new ArgumentException("Адрес не должен быть пустым", nameof(address));
 
+            var requestBody = _serializer.SerializeSinglAddress(address);
+
+            var str = _repository.Request(requestBody);
             var orpon = _serializer.DeserializeSinglAddress(str);
 
             return orpon;
         }
+
+        public bool CheckService()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion PublicMethod
     }
 }

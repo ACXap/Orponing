@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\XmlO.cs" />
+    <Compile Include="Data\AddressList.cs" />
     <Compile Include="HttpRepository.cs" />
     <Compile Include="Interface\IOrponing.cs" />
     <Compile Include="Interface\IRepository.cs" />

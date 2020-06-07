@@ -13,5 +13,11 @@ namespace Orponing
         /// <param name="address">Адрес объекта</param>
         /// <returns>Возвращает объект ОРПОН</returns>
         Address GetOrponByAddress(string address);
+
+        /// <summary>
+        /// Метод для проверки работоспособности орпонизатора
+        /// </summary>
+        /// <returns>Возвращает истину, если сервис работоспособен</returns>
+        bool CheckService();
     }
 }
