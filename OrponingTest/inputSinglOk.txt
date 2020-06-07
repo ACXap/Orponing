@@ -1,0 +1,32 @@
+<AddressElementResponseList2>
+		<AddressElementNameGroup2>
+			<QualityCode>UNDEF_05</QualityCode>
+			<CheckStatus>VALIDATED</CheckStatus>
+			<UnparsedParts></UnparsedParts>
+			<ParsingLevelCode>FIAS_HOUSE</ParsingLevelCode>
+			<SystemCode></SystemCode>
+			<GlobalID>70410863</GlobalID>
+			<KLADRLocalityId>3900000100000</KLADRLocalityId>
+			<FIASLocalityId>DF679694-D505-4DD3-B514-4BA48C8A97D8</FIASLocalityId>
+			<LocalityGlobalId>5203149</LocalityGlobalId>
+			<KLADRStreetId>39000001000103500</KLADRStreetId>
+			<FIASStreetId>3F7B7D28-EBF9-4522-8DA3-5DE9D167F097</FIASStreetId>
+			<StreetGlobalId>5775622</StreetGlobalId>
+			<Street>БЕРЕГОВАЯ (ПРИБРЕЖНЫЙ) </Street>
+			<StreetKind>УЛИЦА</StreetKind>
+			<House>2</House>
+			<HouseLitera></HouseLitera>
+			<CornerHouse></CornerHouse>
+			<BuildingBlock></BuildingBlock>
+			<BuildingBlockLitera></BuildingBlockLitera>
+			<Building></Building>
+			<BuildingLitera></BuildingLitera>
+			<Ownership></Ownership>
+			<OwnershipLitera></OwnershipLitera>
+			<FIASHouseId>30759E2D-42C5-46B9-8FC2-0FCC0C01E40F</FIASHouseId>
+			<HouseGlobalId>70410863</HouseGlobalId>
+			<Latitude>54.651599</Latitude>
+			<Longitude>20.336232</Longitude>
+			<LocationDescription></LocationDescription>
+		</AddressElementNameGroup2>
+</AddressElementResponseList2>

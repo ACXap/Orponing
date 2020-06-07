@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30128.74
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orponing", "Orponing\Orponing.csproj", "{C6E2A738-7C26-47EE-B3FD-B942C1BCA4C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrponingTest", "OrponingTest\OrponingTest.csproj", "{252AC479-857B-4094-9A83-07C0DD6A35E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C6E2A738-7C26-47EE-B3FD-B942C1BCA4C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6E2A738-7C26-47EE-B3FD-B942C1BCA4C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6E2A738-7C26-47EE-B3FD-B942C1BCA4C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6E2A738-7C26-47EE-B3FD-B942C1BCA4C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{252AC479-857B-4094-9A83-07C0DD6A35E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{252AC479-857B-4094-9A83-07C0DD6A35E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{252AC479-857B-4094-9A83-07C0DD6A35E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{252AC479-857B-4094-9A83-07C0DD6A35E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A07381F1-E8C3-4706-BF0B-5B934A5E45A8}
+	EndGlobalSection
+EndGlobal
