@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Orponing.Data;
+using System;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -32,29 +33,62 @@ namespace Orponing
         {
             using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
             {
-                using (Stream responseStream = response.GetResponseStream())
+                return ReadResponse(response);
+            }
+        }
+
+        private string ReadResponse(HttpWebResponse response)
+        {
+            using (Stream responseStream = response.GetResponseStream())
+            {
+                using (StreamReader reader = new StreamReader(responseStream, Encoding.UTF8))
                 {
-                    using (StreamReader reader = new StreamReader(responseStream, Encoding.UTF8))
-                    {
-                        return reader.ReadToEnd();
-                    }
+                    return reader.ReadToEnd();
                 }
             }
         }
+
+        private void ThrowOutError(string message)
+        {
+            throw new RepositoryExeption(message);
+        }
+
         #endregion PrivateMethod
 
         #region PublicMethod
         public string Request(string requestBody)
         {
-            HttpWebRequest request = GetRequest("POST", _url);
-
-            using (StreamWriter streamWriter = new StreamWriter(request.GetRequestStream()))
+            string result = null;
+            
+            try
             {
-                streamWriter.Write(requestBody);
+                HttpWebRequest request = GetRequest("POST", _url);
+
+                using (StreamWriter streamWriter = new StreamWriter(request.GetRequestStream()))
+                {
+                    streamWriter.Write(requestBody);
+                }
+
+                result = GetResponse(request);
+            }
+            catch (WebException wex)
+            {
+                if(wex.Response!=null && wex.Response is HttpWebResponse response)
+                {
+                    ThrowOutError(ReadResponse(response));
+                }
+
+                ThrowOutError(wex.Message);
+            }
+            catch(Exception ex)
+            {
+                ThrowOutError(ex.Message);
             }
 
-            return GetResponse(request);
+            if (string.IsNullOrEmpty(result)) ThrowOutError("Ответ пустота");
+            return result;
         }
+     
         #endregion PublicMethod     
     }
 }

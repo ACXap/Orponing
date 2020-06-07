@@ -15,8 +15,8 @@ namespace Orponing
         private const string START_XML_STRING = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ws=\"http://www.informatica.com/dis/ws/ws_\"><soapenv:Header/><soapenv:Body><ws:AddressElementNameData><AddressElementFullNameList>";
         private const string END_XML_STRING = "</AddressElementFullNameList ></ws:AddressElementNameData></soapenv:Body></soapenv:Envelope>";
 
-        private readonly string _stringPrepareGroopAddress = "AddressElementResponseList2";
-        private readonly string _stringPrepareSinglAddress = "AddressElementNameGroup2";
+        private const string STRING_PREPARE_GROOP_ADDRESS = "AddressElementResponseList2";
+        private const string STRING_PREPARE_SINGLE_ADDRESS = "AddressElementNameGroup2";
         #endregion PrivateField
 
         #region PrivateMethod
@@ -29,29 +29,32 @@ namespace Orponing
 
         private T DeserializeAddress<T>(string input)
         {
-            using (XmlTextReader xmlr = new XmlTextReader(new StringReader(input)))
+            try
             {
-                DataContractSerializer serializer = new DataContractSerializer(typeof(T));
-                var obj = (T)serializer.ReadObject(xmlr);
-                return obj;
+                using (XmlTextReader xmlr = new XmlTextReader(new StringReader(input)))
+                {
+                    DataContractSerializer serializer = new DataContractSerializer(typeof(T));
+                    var obj = (T)serializer.ReadObject(xmlr);
+                    return obj;
+                }
             }
+            catch(Exception ex)
+            {
+                throw new FormatException($"Неверный формат данных: {ex.Message}");
+            }           
         }
         #endregion PrivateMethod
 
         #region PublicMethod
-        public string DeserializeError(string input)
-        {
-            throw new NotImplementedException();
-        }
 
         public List<Address> DeserializeGroopAddress(string input)
         {
-            return DeserializeAddress<AddressList>(PrepareAddress(input, _stringPrepareGroopAddress));
+            return DeserializeAddress<AddressList>(PrepareAddress(input, STRING_PREPARE_GROOP_ADDRESS));
         }
 
         public Address DeserializeSinglAddress(string input)
         {
-            return DeserializeAddress<Address>(PrepareAddress(input, _stringPrepareSinglAddress));
+            return DeserializeAddress<Address>(PrepareAddress(input, STRING_PREPARE_SINGLE_ADDRESS));
         }
 
         public string SerializeGroopAddress(IEnumerable<string> address)

@@ -1,9 +1,6 @@
-﻿using Orponing.Model;
+﻿using Orponing.Data;
+using Orponing.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Orponing
 {
@@ -12,6 +9,7 @@ namespace Orponing
         public OrponingSoap(string serverUrl)
         {
             _repository = new HttpRepository(serverUrl);
+            _serializer = new SerializeXml();
         }
 
         public OrponingSoap(IRepository repository, ISerializer serializer)
@@ -25,12 +23,6 @@ namespace Orponing
         private readonly ISerializer _serializer;
         #endregion PrivateField
 
-        #region PublicProperties
-        #endregion PublicProperties
-
-        #region PrivateMethod
-        #endregion PrivateMethod
-
         #region PublicMethod
         /// <summary>
         /// Метод получения адреса по текстовому представлению 
@@ -38,21 +30,29 @@ namespace Orponing
         /// <param name="address">Текстовое представление адреса</param>
         /// <returns>Адрес</returns>
         /// <exception cref="ArgumentException">Если строковое представление адреса пустое</exception>
+        /// <exception cref="RepositoryExeption">Проблемы при обращении к орпонизатору</exception>
+        /// <exception cref="FormatException">Проблемы при обработке данных от орпонизатора</exception>
         public Address GetOrponByAddress(string address)
         {
             if (string.IsNullOrEmpty(address)) throw new ArgumentException("Адрес не должен быть пустым", nameof(address));
 
+            // Получаем xml-строку по адресу
             var requestBody = _serializer.SerializeSinglAddress(address);
 
+            // Получаем ответ от орпонизатора
             var str = _repository.Request(requestBody);
-            var orpon = _serializer.DeserializeSinglAddress(str);
 
+            // Преобразуем ответ в объект Address
+            var orpon = _serializer.DeserializeSinglAddress(str);
+            
             return orpon;
         }
 
         public bool CheckService()
         {
-            throw new NotImplementedException();
+            var address = GetOrponByAddress("Новосибирская обл., Новосибирск г., ул. Орджоникидзе, 18");
+
+            return address.GlobalID == "111111";
         }
         #endregion PublicMethod
     }

@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\AddressList.cs" />
+    <Compile Include="Data\RepositoryExeption.cs" />
     <Compile Include="HttpRepository.cs" />
     <Compile Include="Interface\IOrponing.cs" />
     <Compile Include="Interface\IRepository.cs" />
