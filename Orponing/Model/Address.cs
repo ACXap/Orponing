@@ -1,4 +1,7 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text;
 
 namespace Orponing.Model
 {
@@ -8,6 +11,54 @@ namespace Orponing.Model
     [DataContract(Name = "AddressElementNameGroup2", Namespace = "")]
     public class Address
     {
+        /// <summary>
+        /// Получение одной строкой названий всех свойств Адреса через указанный разделитель
+        /// </summary>
+        /// <param name="delimiter">Символ разделителя (по умолчанию ;)</param>
+        /// <returns>Строка названий</returns>
+        public static string AddressHeaderFields(char delimiter = ';')
+        {
+            var f = new StringBuilder();
+            Type t = typeof(Address);
+            PropertyInfo[] props = t.GetProperties();
+
+            foreach (var item in props)
+            {
+                f.Append($"{item.Name}{delimiter}");
+            }
+
+            return f.ToString();
+        }
+
+        /// <summary>
+        /// Получение одной строкой значений свойств Адреса через указанный разделитель
+        /// </summary>
+        /// <param name="delimiter">Символ разделителя (по умолчанию ;)</param>
+        /// <returns>Строка значений</returns>
+        public string ToString(char delimiter = ';')
+        {
+            var f = new StringBuilder();
+            Type t = typeof(Address);
+            PropertyInfo[] props = t.GetProperties();
+
+            foreach (var item in props)
+            {
+                f.Append($"{item.GetValue(this)}{delimiter}");
+            }
+
+            return f.ToString();
+        }
+
+        /// <summary>
+        /// Получение одной строкой названий всех свойств Адреса через указанный разделитель
+        /// </summary>
+        /// <param name="delimiter">Символ разделителя (по умолчанию ;)</param>
+        /// <returns>Строка названий</returns>
+        public string HeaderFields(char delimiter = ';')
+        {
+            return AddressHeaderFields(delimiter);
+        }
+
         [DataMember(Name = "QualityCode", Order = 1)]
         public string QualityCode { get; set; }
         [DataMember(Name = "CheckStatus", Order = 2)]

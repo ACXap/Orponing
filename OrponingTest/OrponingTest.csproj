@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="FileRepository.cs" />
     <Compile Include="SerializerTest.cs" />
+    <Compile Include="Test\AddressTest.cs" />
     <Compile Include="Test\OrponingSoapTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
