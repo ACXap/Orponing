@@ -75,7 +75,11 @@ namespace Orponing
 
             return collection;
         }
-
+       
+        /// <summary>
+        /// Метод для проверки работоспособности орпонизатора
+        /// </summary>
+        /// <returns>Возвращает истину, если сервис работоспособен</returns>
         public bool CheckService()
         {
             // Орпонизируем тестовый адрес
