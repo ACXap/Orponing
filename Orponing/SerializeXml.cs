@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
 using System.Xml;
 
 
@@ -59,7 +60,16 @@ namespace Orponing
 
         public string SerializeGroopAddress(IEnumerable<string> address)
         {
-            throw new NotImplementedException();
+            var str = new StringBuilder();
+
+            str.Append(START_XML_STRING);
+            foreach(var item in address)
+            {
+                str.Append($"<AddressElementFullNameGroup><FullAddress>{item}</FullAddress></AddressElementFullNameGroup>");
+            }
+            str.Append(END_XML_STRING);
+
+            return str.ToString();
         }
 
         public string SerializeSinglAddress(string address)
